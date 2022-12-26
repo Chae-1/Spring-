@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    .login-page {
+      display:flex;
+      flex-direction: column;
+    }
+    .header {
+      display:flex;
+      justify-content: center;
+    }
+
+    .footer{
+      display:flex;
+      justify-content: center;
+    }
+
+    .login {
+      display:flex;
+      height: 600px;
+      background-color: aliceblue;
+      justify-content: center;
+    }
+    .login-form input, button{
+      width:80%;
+      padding:20px;
+    }
+    
+    .login-form{
+      display:flex;
+      flex-direction: column;
+      background-color: red;
+      width: 50%;
+    }
+    
+    .login-form-id {
+      display:flex;
+      justify-content: center;
+
+    }
+    button {
+      background-color: cyan;
+      border:none;
+      border-radius: 30px;
+    }
+    .login-form-submit {
+      display:flex;
+      justify-content: center;
+      
+    }
+    .login-form-password {
+      display:flex;
+      justify-content: center;
+      
+    }
+    .login-form-header {
+      display:flex;
+      justify-content: center;
+      
+    }
+  </style>
+</head>
+<body>
+  <div class="login-page">
+    <div class="header">
+      <h1>메인 페이지</h1>
+    </div>
+    <div class="login">
+      <form action="/login" th:action th:object="${loginDto}" class="login-form" method="post">
+        <div class="login-form-header">
+          <h2>로그인</h2>
+        </div>
+        <div class="login-form-id">
+          <input type="text" th:field="*{loginId}" placeholder="아이디">
+        </div>
+        <div class="login-form-password">
+          <input type="password" th:field="*{password}"placeholder="password">
+        </div>
+        <div class="login-form-submit">
+          <button type="submit">로그인</button>
+        </div>
+        <div class="footer" th:if="${#fields.hasGlobalErrors()}">
+          <h1 th:each="err :${#fields.globalErrors()}" th:text="${err}">푸터</h1>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

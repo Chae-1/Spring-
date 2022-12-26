@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      font-size: 24px;
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    button {
+      padding:20px;
+    }
+    .header {
+      display: flex;
+      justify-content: center;
+    }
+    .content {
+      display: flex;
+      justify-content: center;
+    }
+    .board-title {
+      display: flex;
+      flex-direction: column;
+    }
+    .board-content {
+      display: flex;
+      flex-direction: column;
+    }
+    .board-submit {
+      display:flex;
+      width: 100%;
+      justify-content: center;
+    }
+    #boardContent{
+      width:700px;
+      height:500px;
+    }
+    .comment {
+      display: flex;
+     
+      justify-content: center;
+    }
+
+    .comment-form {
+      display:flex;
+      flex-direction: column;
+    }
+    .comment-content{
+      display: flex;
+      width:700px;
+      flex-direction: column;
+    }
+    .comment-area {
+      display: flex;
+      background-color: aliceblue;
+      flex-direction: column;
+      align-items: center;
+    }
+    .added-comment-name p{
+      font-size: 12px;
+    }
+    .added-comment {
+      
+      display:flex;
+      flex-direction: column;
+      width: 700px;
+      height: 100px;
+    }
+    .header-left{
+      
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <div class="header">
+      <div class="header-center">
+       <h1>게시글 조회</h1>
+      </div>
+      <div class="header-left">
+        <a th:href="@{/}">홈으로</a>
+       </div>
+       
+    </div>
+    
+    <div class="content">
+      <form th:action method="post" th:object="${board}" aria-readonly="true">
+        <div class="board-title">
+            <label for="title">제목</label>
+            <input type="text" id="title" th:field="*{title}" readonly placeholder="제목">
+        </div>
+        <div class="board-title">
+          <label for="title">작성자</label>
+          <input type="text" id="writer" th:field="*{writer}" readonly placeholder="제목">
+        </div>
+        <div class="board-content">
+          <label for="boardContent">본문</label>
+          <textarea id="boardContent" th:field="*{boardContent}" placeholder="본문" readonly></textarea>
+        </div>
+      </form>
+    </div>
+
+    <div class="comment">
+      <form class="comment-form" method="post" th:object="${comment}" th:action="@{/board/{boardId}/comment(boardId=${boardId})}">
+        <div class="comment-content">
+          <label for="content">댓글</label>
+          <textarea id="content" th:field="*{content}" placeholder="댓글"></textarea>
+        </div>
+        <div>
+          <button type="submit">댓글작성</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="comment-area">
+      <div class="added-comment" th:each ="comment : ${board.commentList}">
+        <div class="added-comment-name">
+          <p th:text="${comment.writer}">아이디 혹은 별명</p>
+        </div>
+        <div class="added-comment-content">
+          <p th:text="${comment.content}">댓글 내용</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

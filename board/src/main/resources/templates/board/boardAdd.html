@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    button {
+      padding:20px;
+    }
+    .header {
+      display: flex;
+      justify-content: center;
+    }
+    .content {
+      display: flex;
+      justify-content: center;
+    }
+    .board-title {
+      display: flex;
+      flex-direction: column;
+    }
+    .board-content {
+      display: flex;
+      flex-direction: column;
+    }
+    .board-submit {
+      display:flex;
+      width: 100%;
+      justify-content: center;
+    }
+    textarea {
+      width:700px;
+      height:500px;
+    }
+
+  </style>
+</head>
+<body>
+  <div>
+    <div class="header">
+      <h1>게시글 작성</h1>
+    </div>
+    
+    <div class="content">
+      <form th:action th:object="${boardDto}" method="post">
+        <div class="board-title">
+            <label for="title">제목</label>
+            <input type="text" th:field="*{title}" id="title" placeholder="제목">
+        </div>
+        <div class="board-content">
+          <label for="content">본문</label>
+          <textarea id="content" th:field="*{content}" placeholder="본문"></textarea>
+        </div>
+        <div class="board-submit">
+          <button type="submit">
+            작성
+          </button>
+        </div>
+      </form>
+      <div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

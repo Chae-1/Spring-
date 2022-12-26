@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+
+<body>
+  <div class="header">
+    <div class="header-header">
+      <h1>메인페이지</h1>
+    </div>
+
+    <div class="header-buttons">
+      <div class="header-join" th:text="|${member.memberId} 님 안녕하세요.|">
+
+      </div>
+      <button class="header-login" type="button" th:onclick="|location.href='@{/logout}'|">
+          로그아웃
+      </button>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="content-wrap">
+      <ul class="content-wrap-list">
+        <li class="content-wrap-li" th:each="board : ${boards}">
+          <div class="list-number" th:text="${board.boardId}">
+             번호
+          </div>
+          <div class="list-title">
+            <a th:href="|@{/board/{boardId}(boardId=${board.boardId})}|" th:text="${board.boardTitle}">게시판 제목</a>
+          </div>
+          <div class="list-writer" th:text="${board.writer}">
+            작성자
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class=footer>
+    <div class="write">
+      <a th:href="@{/board}">글쓰기</a>
+    </div>
+    <div class="page">
+      <div class="page-elem">
+        <a href="h">1</a>
+      </div>
+      <div class="page-elem">
+        <a href="h">1</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
