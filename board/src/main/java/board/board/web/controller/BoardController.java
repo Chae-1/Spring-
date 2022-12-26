@@ -23,6 +23,7 @@ public class BoardController {
     private final BoardService boardService;
     @GetMapping
     public String boardForm(@ModelAttribute BoardDto boardDto) {
+        String add = "test git";
         return "/board/boardAdd";
     }
 
