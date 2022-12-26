@@ -1,8 +1,6 @@
 package board.board.service;
 
-import board.board.repository.board.BoardRepository;
 import board.board.repository.home.HomeRepository;
-import board.board.repository.member.MemberRepository;
 import board.board.web.form.BoardListDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,5 +15,14 @@ public class HomeService {
     public List<BoardListDto> findAll() {
         List<BoardListDto> all = repository.findAll();
         return all;
+    }
+
+    public List<BoardListDto> findHomeBoardList(Integer boardSize, Integer currentPage) {
+        List<BoardListDto> all = repository.findHomeBoardList(boardSize, currentPage);
+        return all;
+    }
+
+    public Integer boardSize() {
+        return repository.boardSize();
     }
 }

@@ -41,18 +41,17 @@
       </ul>
     </div>
   </div>
-  <div class=footer>
+  <div class=footer th:with="start=${paging.getStartPage()}, last=${paging.getEndPage()}">
     <div class="write">
-      <a th:href="@{/board}">글쓰기</a>
+      <a th:href="@{/board/add}">글쓰기</a>
     </div>
-    <div class="page">
-      <div class="page-elem">
-        <a href="h">1</a>
+    <th:block th:each="page: ${#numbers.sequence(start, last)}">
+      <div class="page">
+        <div class="page-elem">
+          <a th:text="${page}" th:href="@{/board(page=${page})}">1</a>
+        </div>
       </div>
-      <div class="page-elem">
-        <a href="h">1</a>
-      </div>
-    </div>
+    </th:block>
   </div>
 </body>
 </html>

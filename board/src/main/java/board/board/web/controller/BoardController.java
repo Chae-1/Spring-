@@ -21,13 +21,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequiredArgsConstructor
 public class BoardController {
     private final BoardService boardService;
-    @GetMapping
+    @GetMapping("/add")
     public String boardForm(@ModelAttribute BoardDto boardDto) {
-        String add = "test git";
         return "/board/boardAdd";
     }
 
-    @PostMapping
+    @PostMapping("/add")
     public String addBoard(@ModelAttribute @Validated BoardDto boardDto,
                            BindingResult bindingResult,
                            RedirectAttributes redirectAttributes,

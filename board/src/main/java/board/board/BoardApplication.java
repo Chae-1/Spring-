@@ -10,14 +10,17 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class BoardApplication implements WebMvcConfigurer {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(new LoginInterceptor())
-				.order(1)
-				.addPathPatterns("/**")
-				.excludePathPatterns("/css/**", "/board/{[0-9]}", "/members/**", "/login/**", "/logout", "/");
+//		registry.addInterceptor(new LoginInterceptor())
+//				.order(1)
+//				.addPathPatterns("/**")
+//				.excludePathPatterns("/css/**", "/board/{[0-9]}", "/members/**", "/login/**", "/logout", "/");
 	}
+
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(BoardApplication.class, args);
 	}
+
 
 }
